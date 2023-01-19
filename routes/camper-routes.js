@@ -34,7 +34,27 @@ router.post('/campers', (req, res, next) => {
 		.catch(next)
 })
 
+// UPDATE
+// PATCH /campers/
+router.patch('/campers/:id', (req, res, next) => {
 
+	Camper.findById(req.params.id)
+		.then((camper) => {
+			return camper.updateOne(req.body.camper)
+		})
+		.then(() => res.sendStatus(204))
+		.catch(next)
+})
 
+// DESTROY
+// DELETE /campers/
+router.delete('/campers/:id', (req, res, next) => {
+	Camper.findById(req.params.id)
+		.then((camper) => {
+			camper.deleteOne()
+		})
+		.then(() => res.sendStatus(204))
+		.catch(next)
+})
 
 module.exports = router
