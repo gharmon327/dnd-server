@@ -1,11 +1,11 @@
 {
   "name": "dnd-server",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "start": "node server.js"
   },
   "author": "Greg",
   "license": "ISC",
@@ -13,5 +13,14 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mongoose": "^6.8.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gharmon327/dnd-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gharmon327/dnd-server/issues"
+  },
+  "homepage": "https://github.com/gharmon327/dnd-server#readme",
+  "description": ""
 }
