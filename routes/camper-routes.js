@@ -1,12 +1,14 @@
 const express = require('express')
 
+const { handle404 } = require('../lib/custom-errors')
+
 const Camper = require('../models/camper')
 
 const router = express.Router()
 
 // INDEX
 // GET /camper
-router.get('/campers', (req, res, next) => {
+router.get('/campers',  (req, res, next) => {
     Camper.find()
           .then(campers => {
               return campers.map((camper) => camper)
@@ -20,6 +22,7 @@ router.get('/campers', (req, res, next) => {
 router.get('/campers/:id', (req, res, next) => {
 	// req.params.id will be set based on the `:id` in the route
 	Camper.findById(req.params.id)
+		.then(handle404)
 		.then((camper) => res.status(200).json({ camper: camper }))
 		.catch(next)
 })
@@ -39,6 +42,7 @@ router.post('/campers', (req, res, next) => {
 router.patch('/campers/:id', (req, res, next) => {
 
 	Camper.findById(req.params.id)
+		.then(handle404)
 		.then((camper) => {
 			return camper.updateOne(req.body.camper)
 		})
@@ -50,6 +54,7 @@ router.patch('/campers/:id', (req, res, next) => {
 // DELETE /campers/
 router.delete('/campers/:id', (req, res, next) => {
 	Camper.findById(req.params.id)
+		.then(handle404)
 		.then((camper) => {
 			camper.deleteOne()
 		})
